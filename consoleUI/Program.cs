@@ -40,31 +40,10 @@ namespace consoleUI
                 // User input.
                 option = Console.ReadLine();
 
-                // Open file for variable values
+                // StreamReader and count variable declaration.
+                // Count variable ensures Rooms, Weapons, and Mobs are numbered correctly.
                 StreamReader read;
-                read = File.OpenText("descriptions.txt");
                 int count = 1;
-
-                // Read rooms and room descriptions, add to rooms list
-                List<string> roomsList = new List<string>();
-                for (int i = 0; i < 10; i++)
-                {
-                    roomsList.Add(read.ReadLine());
-                }
-
-                // Read weapons and weapon descriptions, add to weapons list
-                List<string> weaponsList = new List<string>();
-                for (int i = 0; i < 8; i++)
-                {
-                    weaponsList.Add(read.ReadLine());
-                }
-
-                // Read mobs and mob descriptions, add to mobs list
-                List<string> mobsList = new List<string>();
-                for (int i = 0; i < 10; i++)
-                {
-                    mobsList.Add(read.ReadLine());
-                }
 
                 // Potion variables
                 string potion1 = "Health Potion";
@@ -81,8 +60,6 @@ namespace consoleUI
                 string item3 = "Household Key";
                 string item4 = "Cut of Meat";
 
-                read.Close();
-
                 // Switch for menu selection. Fallthrough is used to provide multiple
                 // options for the same selection.
                 switch (option.ToLower())
@@ -90,38 +67,40 @@ namespace consoleUI
                     case "1":
                     case "rooms":
                     case "room":
-                        // Print rooms
+                        // Open rooms file, print rooms, close rooms file
                         Console.WriteLine();
                         Console.WriteLine("Rooms:");
+                        read = File.OpenText("rooms.txt");
                         count = 1;
-                        for (int i = 0; i < 9;)
+                        while (!read.EndOfStream)
                         {
                             Console.Write(count + " - ");
-                            Console.WriteLine(roomsList[i]);
-                            Console.WriteLine(roomsList[i + 1]);
+                            Console.WriteLine(read.ReadLine());
+                            Console.WriteLine(read.ReadLine());
                             Console.WriteLine();
-                            i += 2;
                             count++;
                         }
+                        read.Close();
                         Console.WriteLine("Choose another option?");
                         break;
 
                     case "2":
                     case "weapons":
                     case "weapon":
-                        // Print weapons
+                        // Open weapons file, print weapons, close weapons file
                         Console.WriteLine();
                         Console.WriteLine("Weapons:");
+                        read = File.OpenText("weapons.txt");
                         count = 1;
-                        for (int i = 0; i < 7;)
+                        while (!read.EndOfStream)
                         {
                             Console.Write(count + " - ");
-                            Console.WriteLine(weaponsList[i]);
-                            Console.WriteLine(weaponsList[i + 1]);
+                            Console.WriteLine(read.ReadLine());
+                            Console.WriteLine(read.ReadLine());
                             Console.WriteLine();
-                            i += 2;
                             count++;
                         }
+                        read.Close();
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -167,19 +146,20 @@ namespace consoleUI
                     case "6":
                     case "mobs":
                     case "mob":
-                        // Print mobs
+                        // Open mobs file, print mobs, close mobs file
                         Console.WriteLine();
                         Console.WriteLine("Mobs:");
+                        read = File.OpenText("mobs.txt");
                         count = 1;
-                        for (int i = 0; i < 9;)
+                        while (!read.EndOfStream)
                         {
                             Console.Write(count + " - ");
-                            Console.WriteLine(mobsList[i]);
-                            Console.WriteLine(mobsList[i+1]);
+                            Console.WriteLine(read.ReadLine());
+                            Console.WriteLine(read.ReadLine());
                             Console.WriteLine();
-                            i += 2;
                             count++;
                         }
+                        read.Close();
                         Console.WriteLine("Choose another option?");
                         break;
 
