@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace consoleUI
 {
-    /**
-    * 2/26/2023
+    /*
+    * 3/12/2023
     * CSC 153
     * Kayla Smith
     * A menu with 6 different options of variables to display, and a 7th
@@ -39,18 +40,31 @@ namespace consoleUI
                 // User input.
                 option = Console.ReadLine();
 
-                // Room variables
-                string room1 = "Wilderness Pathway";
-                string room2 = "Village entrance";
-                string room3 = "Abandoned Cottage";
-                string room4 = "Shop";
-                string room5 = "Ruined Cottage";
+                // Open file for variable values
+                StreamReader read;
+                read = File.OpenText("descriptions.txt");
+                int count = 1;
 
-                // Weapon variables
-                string weapon1 = "Shortsword";
-                string weapon2 = "Longsword";
-                string weapon3 = "Light Crossbow";
-                string weapon4 = "Axe";
+                // Read rooms and room descriptions, add to rooms list
+                List<string> roomsList = new List<string>();
+                for (int i = 0; i < 10; i++)
+                {
+                    roomsList.Add(read.ReadLine());
+                }
+
+                // Read weapons and weapon descriptions, add to weapons list
+                List<string> weaponsList = new List<string>();
+                for (int i = 0; i < 8; i++)
+                {
+                    weaponsList.Add(read.ReadLine());
+                }
+
+                // Read mobs and mob descriptions, add to mobs list
+                List<string> mobsList = new List<string>();
+                for (int i = 0; i < 10; i++)
+                {
+                    mobsList.Add(read.ReadLine());
+                }
 
                 // Potion variables
                 string potion1 = "Health Potion";
@@ -67,44 +81,47 @@ namespace consoleUI
                 string item3 = "Household Key";
                 string item4 = "Cut of Meat";
 
-                // Mob variables
-                string mob1 = "Feral Rat";
-                string mob2 = "Starving Wolf";
-                string mob3 = "Frail Cultist";
-                string mob4 = "Armored Cultist";
-                string mob5 = "Berserker Cultist";
-
+                read.Close();
 
                 // Switch for menu selection. Fallthrough is used to provide multiple
                 // options for the same selection.
                 switch (option.ToLower())
                 {
-                    // Rooms
                     case "1":
                     case "rooms":
                     case "room":
+                        // Print rooms
                         Console.WriteLine();
                         Console.WriteLine("Rooms:");
-                        Console.WriteLine("1 - " + room1);
-                        Console.WriteLine("2 - " + room2);
-                        Console.WriteLine("3 - " + room3);
-                        Console.WriteLine("4 - " + room4);
-                        Console.WriteLine("5 - " + room5);
-                        Console.WriteLine();
+                        count = 1;
+                        for (int i = 0; i < 9;)
+                        {
+                            Console.Write(count + " - ");
+                            Console.WriteLine(roomsList[i]);
+                            Console.WriteLine(roomsList[i + 1]);
+                            Console.WriteLine();
+                            i += 2;
+                            count++;
+                        }
                         Console.WriteLine("Choose another option?");
                         break;
 
-                    // Weapons
                     case "2":
                     case "weapons":
                     case "weapon":
+                        // Print weapons
                         Console.WriteLine();
                         Console.WriteLine("Weapons:");
-                        Console.WriteLine("1 - " + weapon1);
-                        Console.WriteLine("2 - " + weapon2);
-                        Console.WriteLine("3 - " + weapon3);
-                        Console.WriteLine("4 - " + weapon4);
-                        Console.WriteLine();
+                        count = 1;
+                        for (int i = 0; i < 7;)
+                        {
+                            Console.Write(count + " - ");
+                            Console.WriteLine(weaponsList[i]);
+                            Console.WriteLine(weaponsList[i + 1]);
+                            Console.WriteLine();
+                            i += 2;
+                            count++;
+                        }
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -147,18 +164,22 @@ namespace consoleUI
                         Console.WriteLine("Choose another option?");
                         break;
 
-                    // Mobs
                     case "6":
                     case "mobs":
                     case "mob":
+                        // Print mobs
                         Console.WriteLine();
                         Console.WriteLine("Mobs:");
-                        Console.WriteLine("1 - " + mob1);
-                        Console.WriteLine("2 - " + mob2);
-                        Console.WriteLine("3 - " + mob3);
-                        Console.WriteLine("4 - " + mob4);
-                        Console.WriteLine("5 - " + mob5);
-                        Console.WriteLine();
+                        count = 1;
+                        for (int i = 0; i < 9;)
+                        {
+                            Console.Write(count + " - ");
+                            Console.WriteLine(mobsList[i]);
+                            Console.WriteLine(mobsList[i+1]);
+                            Console.WriteLine();
+                            i += 2;
+                            count++;
+                        }
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -175,9 +196,8 @@ namespace consoleUI
                         break;
                 }
             }
-            // Menu exit
-            Console.WriteLine("Menu exited.");
-            Console.ReadLine();
+            // Exit program
+            System.Environment.Exit(0);
         }
     }
 }
