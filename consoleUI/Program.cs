@@ -22,6 +22,8 @@ namespace consoleUI
             // Option string for user input.
             string option = "none";
 
+
+
             // Loop for menu display, input of "7" or "exit" (ignoring case) will exit the loop.
             Console.WriteLine("Welcome. Choose a menu option to display.");
             while (option != "7" && (option.ToLower() != "exit"))
@@ -45,20 +47,28 @@ namespace consoleUI
                 StreamReader read;
                 int count = 1;
 
+                // Room variables
+                string room1 = "", room2 = "", room3 = "", room4 = "", room5 = "";
+                // Room description variables
+                string roomText1 = "", roomText2 = "", roomText3 = "", roomText4 = "", roomText5 = "";
+
+                // Weapon variables
+                string weapon1 = "", weapon2 = "", weapon3 = "", weapon4 = "";
+                // Weapon description variables
+                string weaponText1 = "", weaponText2 = "", weaponText3 = "", weaponText4 = "";
+
                 // Potion variables
-                string potion1 = "Health Potion";
-                string potion2 = "Strength Potion";
+                string potion1 = "", potion2 = "";
 
                 // Treasure variables
-                string treasure1 = "Silver Coin";
-                string treasure2 = "Antique Locket";
-                string treasure3 = "Idol of Polybia";
+                string treasure1 = "", treasure2 = "", treasure3 = "";
 
                 // Item variables
-                string item1 = "Bundle of Arrows";
-                string item2 = "Handheld Shield";
-                string item3 = "Household Key";
-                string item4 = "Cut of Meat";
+                string item1 = "", item2 = "", item3 = "", item4 = "";
+
+                // Mob variables
+                string mob1 = "", mob2 = "", mob3 = "", mob4 = "", mob5 = "";
+                string mobText1 = "", mobText2 = "", mobText3 = "", mobText4 = "", mobText5 = "";
 
                 // Switch for menu selection. Fallthrough is used to provide multiple
                 // options for the same selection.
@@ -67,40 +77,73 @@ namespace consoleUI
                     case "1":
                     case "rooms":
                     case "room":
-                        // Open rooms file, print rooms, close rooms file
+                        // Open rooms file, read rooms into variables, print rooms, close rooms file
                         Console.WriteLine();
                         Console.WriteLine("Rooms:");
                         read = File.OpenText("rooms.txt");
-                        count = 1;
                         while (!read.EndOfStream)
                         {
-                            Console.Write(count + " - ");
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine();
-                            count++;
+                            room1 = read.ReadLine();
+                            roomText1 = read.ReadLine();
+                            room2 = read.ReadLine();
+                            roomText2 = read.ReadLine();
+                            room3 = read.ReadLine();
+                            roomText3 = read.ReadLine();
+                            room4 = read.ReadLine();
+                            roomText4 = read.ReadLine();
+                            room5 = read.ReadLine();
+                            roomText5 = read.ReadLine();
                         }
                         read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(room1);
+                        Console.WriteLine(roomText1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(room2);
+                        Console.WriteLine(roomText2);
+                        Console.Write("3 - ");
+                        Console.WriteLine(room3);
+                        Console.WriteLine(roomText3);
+                        Console.Write("4 - ");
+                        Console.WriteLine(room4);
+                        Console.WriteLine(roomText4);
+                        Console.Write("5 - ");
+                        Console.WriteLine(room5);
+                        Console.WriteLine(roomText5);
                         Console.WriteLine("Choose another option?");
                         break;
 
                     case "2":
                     case "weapons":
                     case "weapon":
-                        // Open weapons file, print weapons, close weapons file
+                        // Open weapons file, read weapons into variables, print weapons, close weapons file
                         Console.WriteLine();
                         Console.WriteLine("Weapons:");
                         read = File.OpenText("weapons.txt");
-                        count = 1;
                         while (!read.EndOfStream)
                         {
-                            Console.Write(count + " - ");
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine();
-                            count++;
+                            weapon1 = read.ReadLine();
+                            weaponText1 = read.ReadLine();
+                            weapon2 = read.ReadLine();
+                            weaponText2 = read.ReadLine();
+                            weapon3 = read.ReadLine();
+                            weaponText3 = read.ReadLine();
+                            weapon4 = read.ReadLine();
+                            weaponText4 = read.ReadLine();
                         }
                         read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(weapon1);
+                        Console.WriteLine(weaponText1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(weapon2);
+                        Console.WriteLine(weaponText2);
+                        Console.Write("3 - ");
+                        Console.WriteLine(weapon3);
+                        Console.WriteLine(weaponText3);
+                        Console.Write("4 - ");
+                        Console.WriteLine(weapon4);
+                        Console.WriteLine(weaponText4);
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -108,11 +151,20 @@ namespace consoleUI
                     case "3":
                     case "potions":
                     case "potion":
+                        // Option potions file, read potions into variables, print potions, close potions file
                         Console.WriteLine();
                         Console.WriteLine("Potions:");
-                        Console.WriteLine("1 - " + potion1);
-                        Console.WriteLine("2 - " + potion2);
-                        Console.WriteLine();
+                        read = File.OpenText("potions.txt");
+                        while (!read.EndOfStream)
+                        {
+                            potion1 = read.ReadLine();
+                            potion2 = read.ReadLine();
+                        }
+                        read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(potion1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(potion2);
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -120,12 +172,23 @@ namespace consoleUI
                     case "4":
                     case "treasures":
                     case "treasure":
+                        // Open treasure file, read treasure into variables, print treasure, close treasure file
                         Console.WriteLine();
-                        Console.WriteLine("Treasures:");
-                        Console.WriteLine("1 - " + treasure1);
-                        Console.WriteLine("2 - " + treasure2);
-                        Console.WriteLine("3 - " + treasure3);
-                        Console.WriteLine();
+                        Console.WriteLine("Treasure:");
+                        read = File.OpenText("treasure.txt");
+                        while (!read.EndOfStream)
+                        {
+                            treasure1 = read.ReadLine();
+                            treasure2 = read.ReadLine();
+                            treasure3 = read.ReadLine();
+                        }
+                        read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(treasure1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(treasure2);
+                        Console.Write("3 - ");
+                        Console.WriteLine(treasure3);
                         Console.WriteLine("Choose another option?");
                         break;
 
@@ -133,33 +196,65 @@ namespace consoleUI
                     case "5":
                     case "items":
                     case "item":
+                        // Open items file, read items into variables, print items, close items file
                         Console.WriteLine();
                         Console.WriteLine("Items:");
-                        Console.WriteLine("1 - " + item1);
-                        Console.WriteLine("2 - " + item2);
-                        Console.WriteLine("3 - " + item3);
-                        Console.WriteLine("4 - " + item4);
-                        Console.WriteLine();
+                        read = File.OpenText("items.txt");
+                        while (!read.EndOfStream)
+                        {
+                            item1 = read.ReadLine();
+                            item2 = read.ReadLine();
+                            item3 = read.ReadLine();
+                            item4 = read.ReadLine();
+                        }
+                        read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(item1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(item2);
+                        Console.Write("3 - ");
+                        Console.WriteLine(item3);
+                        Console.Write("4 - ");
+                        Console.WriteLine(item4);
                         Console.WriteLine("Choose another option?");
                         break;
 
                     case "6":
                     case "mobs":
                     case "mob":
-                        // Open mobs file, print mobs, close mobs file
+                        // Open mobs file, reab mobs into variables, print mobs, close mobs file
                         Console.WriteLine();
                         Console.WriteLine("Mobs:");
                         read = File.OpenText("mobs.txt");
-                        count = 1;
                         while (!read.EndOfStream)
                         {
-                            Console.Write(count + " - ");
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine(read.ReadLine());
-                            Console.WriteLine();
-                            count++;
+                            mob1 = read.ReadLine();
+                            mobText1 = read.ReadLine();
+                            mob2 = read.ReadLine();
+                            mobText2 = read.ReadLine();
+                            mob3 = read.ReadLine();
+                            mobText3 = read.ReadLine();
+                            mob4 = read.ReadLine();
+                            mobText4 = read.ReadLine();
+                            mob5 = read.ReadLine();
+                            mobText5 = read.ReadLine();
                         }
                         read.Close();
+                        Console.Write("1 - ");
+                        Console.WriteLine(mob1);
+                        Console.WriteLine(mobText1);
+                        Console.Write("2 - ");
+                        Console.WriteLine(mob2);
+                        Console.WriteLine(mobText2);
+                        Console.Write("3 - ");
+                        Console.WriteLine(mob3);
+                        Console.WriteLine(mobText3);
+                        Console.Write("4 - ");
+                        Console.WriteLine(mob4);
+                        Console.WriteLine(mobText4);
+                        Console.Write("5 - ");
+                        Console.WriteLine(mob5);
+                        Console.WriteLine(mobText5);
                         Console.WriteLine("Choose another option?");
                         break;
 
