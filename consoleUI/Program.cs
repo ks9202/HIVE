@@ -30,13 +30,12 @@ namespace consoleUI
                 HIVEMenu.PrintMenu();
                 option = HIVEMenu.DisplayOption(option);
             }
-
             // Exit program
-            // System.Environment.Exit(0);
+            System.Environment.Exit(0);
 
-            // Wasn't sure when to run combat, so it runs after the menu is exited.
-            HIVEMenu.StartCombat();
-            Console.ReadLine();
+            // Test for combat
+            // HIVEMenu.StartCombat();
+            // Console.ReadLine();
         }
     }
 }
