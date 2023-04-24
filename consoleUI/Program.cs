@@ -9,25 +9,27 @@ using HIVELibrary;
 namespace consoleUI
 {
     /*
-    * 3/12/2023
+    * 4/23/2023
     * CSC 153
     * Kayla Smith
-    * A menu with 6 different options of variables to display, and a 7th
-    * option to exit the menu.
+    * A program with options to move north or south through rooms,
+    * and to display rooms, weapons, potions, treasures, items
+    * or mobs.
     */
 
     class Program
     {
         static void Main(string[] args)
         {
-            // Option string for user input.
             string option = "none";
 
-            // Loop for menu display, input of "7" or "exit" (ignoring case) will exit the loop.
-            Console.WriteLine("Welcome. Choose a menu option to display.");
-            while (option != "7" && (option.ToLower() != "exit"))
+            // Print welcome and current room, loop
+            HIVEMenu.PrintWelcome();
+            // Rooms must be loaded before display
+            LoadGame.LoadRooms();
+            DisplayRequested.DisplayCurrentRoom();
+            while (option.ToLower() != "exit")
             {
-                HIVEMenu.PrintMenu();
                 option = HIVEMenu.DisplayOption(option);
             }
             // Exit program

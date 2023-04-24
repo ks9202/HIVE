@@ -12,55 +12,38 @@ namespace HIVELibrary
         public static void LoadRooms()
         {
             StreamReader read = File.OpenText("rooms.txt");
-            while (!read.EndOfStream)
+            for (int i = 0; i < 5; i++)
             {
-                World.room1 = read.ReadLine();
-                World.roomText1 = read.ReadLine();
-                World.room2 = read.ReadLine();
-                World.roomText2 = read.ReadLine();
-                World.room3 = read.ReadLine();
-                World.roomText3 = read.ReadLine();
-                World.room4 = read.ReadLine();
-                World.roomText4 = read.ReadLine();
-                World.room5 = read.ReadLine();
-                World.roomText5 = read.ReadLine();
+                World.rooms[i] = read.ReadLine();
+                World.roomsDesc[i] = read.ReadLine();
             }
             read.Close();
         }
         public static void LoadWeapons()
         {
             StreamReader read = File.OpenText("weapons.txt");
-            while (!read.EndOfStream)
+            for (int i = 0; i < 4; i++)
             {
-                World.weapon1 = read.ReadLine();
-                World.weaponText1 = read.ReadLine();
-                World.weapon2 = read.ReadLine();
-                World.weaponText2 = read.ReadLine();
-                World.weapon3 = read.ReadLine();
-                World.weaponText3 = read.ReadLine();
-                World.weapon4 = read.ReadLine();
-                World.weaponText4 = read.ReadLine();
+                World.weapons[i] = read.ReadLine();
+                World.weaponsDesc[i] = read.ReadLine();
             }
             read.Close();
         }
         public static void LoadPotions()
         {
             StreamReader read = File.OpenText("potions.txt");
-            while (!read.EndOfStream)
+            for (int i = 0; i < 2; i++)
             {
-                World.potion1 = read.ReadLine();
-                World.potion2 = read.ReadLine();
+                World.potions[i] = read.ReadLine();
             }
             read.Close();
         }
         public static void LoadTreasure()
         {
             StreamReader read = File.OpenText("treasure.txt");
-            while (!read.EndOfStream)
+            for (int i = 0; i < 3; i++)
             {
-                World.treasure1 = read.ReadLine();
-                World.treasure2 = read.ReadLine();
-                World.treasure3 = read.ReadLine();
+                World.treasures[i] = read.ReadLine();
             }
             read.Close();
         }
@@ -69,10 +52,7 @@ namespace HIVELibrary
             StreamReader read = File.OpenText("items.txt");
             while (!read.EndOfStream)
             {
-                World.item1 = read.ReadLine();
-                World.item2 = read.ReadLine();
-                World.item3 = read.ReadLine();
-                World.item4 = read.ReadLine();
+                World.items.Add(read.ReadLine());
             }
             read.Close();
         }
@@ -81,16 +61,8 @@ namespace HIVELibrary
             StreamReader read = File.OpenText("mobs.txt");
             while (!read.EndOfStream)
             {
-                World.mob1 = read.ReadLine();
-                World.mobText1 = read.ReadLine();
-                World.mob2 = read.ReadLine();
-                World.mobText2 = read.ReadLine();
-                World.mob3 = read.ReadLine();
-                World.mobText3 = read.ReadLine();
-                World.mob4 = read.ReadLine();
-                World.mobText4 = read.ReadLine();
-                World.mob5 = read.ReadLine();
-                World.mobText5 = read.ReadLine();
+                World.mobs.Add(read.ReadLine());
+                World.mobsDesc.Add(read.ReadLine());
             }
             read.Close();
         }

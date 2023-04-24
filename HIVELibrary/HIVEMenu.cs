@@ -11,7 +11,7 @@ namespace HIVELibrary
     {
         public static void PrintMenu()
         {
-            // Display menu.
+            // Old menu display. Not currently in use.
             Console.WriteLine();
             Console.WriteLine("1 - Display Rooms");
             Console.WriteLine("2 - Display Weapons");
@@ -23,14 +23,34 @@ namespace HIVELibrary
             Console.WriteLine();
         }
 
+        public static void PrintWelcome()
+        {
+            // Sprint 4 alternate menu display.
+            Console.WriteLine();
+            Console.WriteLine("Welcome!");
+            Console.WriteLine("Type north or n for north, south or s for south");
+            Console.WriteLine("or type a command.");
+            Console.WriteLine("Type exit to exit.");
+            Console.WriteLine();
+        }
+
         public static string DisplayOption(string option)
         {
             option = Console.ReadLine();
             // Switch for menu selection. Fallthrough is used to provide multiple
             // options for the same selection.
-            switch (option)
+            switch (option.ToLower())
             {
-                case "1":
+                case "n":
+                case "north":
+                    StartMovement(option);
+                    break;
+
+                case "s":
+                case "south":
+                    StartMovement(option);
+                    break;
+
                 case "rooms":
                 case "room":
                     // Load and display rooms
@@ -38,7 +58,6 @@ namespace HIVELibrary
                     DisplayRequested.DisplayRooms();
                     break;
 
-                case "2":
                 case "weapons":
                 case "weapon":
                     // Load and display weapons
@@ -46,8 +65,6 @@ namespace HIVELibrary
                     DisplayRequested.DisplayWeapons();
                     break;
 
-                // Potions
-                case "3":
                 case "potions":
                 case "potion":
                     // Load and display potions
@@ -55,8 +72,6 @@ namespace HIVELibrary
                     DisplayRequested.DisplayPotions();
                     break;
 
-                // Treasures
-                case "4":
                 case "treasures":
                 case "treasure":
                     // Load and display treasure
@@ -64,8 +79,6 @@ namespace HIVELibrary
                     DisplayRequested.DisplayTreasure();
                     break;
 
-                // Items
-                case "5":
                 case "items":
                 case "item":
                     // Load and display items
@@ -73,7 +86,6 @@ namespace HIVELibrary
                     DisplayRequested.DisplayItems();
                     break;
 
-                case "6":
                 case "mobs":
                 case "mob":
                     // Load and display mobs
@@ -82,7 +94,6 @@ namespace HIVELibrary
                     break;
 
                 // Exit included to prevent switch from defaulting.
-                case "7":
                 case "exit":
                     break;
 
@@ -93,6 +104,38 @@ namespace HIVELibrary
                     Console.WriteLine("Try again?");
                     break;
             }
+            return option;
+        }
+
+        public static string StartMovement(string option)
+        {
+                switch (option.ToLower())
+                {
+                    case "n":
+                    case "north":
+                        if (World.player >= World.rooms.Length)
+                        {
+                            StandardMessages.DisplayMoveError();
+                        }
+                        else
+                        {
+                            World.player++;
+                            DisplayRequested.DisplayCurrentRoom();
+                        }
+                        break;
+                    case "s":
+                    case "south":
+                        if (World.player < 0)
+                        {
+                            StandardMessages.DisplayMoveError();
+                        }
+                        else
+                        {
+                            World.player--;
+                            DisplayRequested.DisplayCurrentRoom();
+                        }
+                        break;
+                }
             return option;
         }
 
