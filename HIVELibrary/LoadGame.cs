@@ -11,13 +11,43 @@ namespace HIVELibrary
     {
         public static void LoadRooms()
         {
-            StreamReader read = File.OpenText("rooms.txt");
-            for (int i = 0; i < 5; i++)
+            //StreamReader read = File.OpenText("rooms.txt");
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    World.rooms[i] = read.ReadLine();
+            //    World.roomsDesc[i] = read.ReadLine();
+            //}
+            //read.Close();
+
+            List<Room> rooms = new List<Room>
             {
-                World.rooms[i] = read.ReadLine();
-                World.roomsDesc[i] = read.ReadLine();
+                new Room{ },
+                new Room{ },
+                new Room{ },
+                new Room{ },
+                new Room{ },
+            };
+
+            // Got stuck here
+            StreamReader read = new StreamReader(File.OpenRead("Rooms.csv"));
+            while (!read.EndOfStream)
+            {
+                string line = read.ReadLine();
+                string[] values = line.Split(',');
+                for (int i = 0; i < 4; i += 4)
+                {
+                    rooms[i].Id = values[i];
+                }
             }
             read.Close();
+
+            //test
+            //Console.WriteLine(rooms[0].Id);
+            //Console.WriteLine(rooms[1].Id);
+            //Console.WriteLine(rooms[2].Id);
+            //Console.WriteLine(rooms[3].Id);
+            //Console.WriteLine(rooms[4].Id);
+
         }
         public static void LoadWeapons()
         {

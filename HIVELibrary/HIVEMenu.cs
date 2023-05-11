@@ -111,6 +111,7 @@ namespace HIVELibrary
         {
                 switch (option.ToLower())
                 {
+                    // Move player north
                     case "n":
                     case "north":
                         if (World.player >= World.rooms.Length)
@@ -123,6 +124,7 @@ namespace HIVELibrary
                             DisplayRequested.DisplayCurrentRoom();
                         }
                         break;
+                    // Move player south
                     case "s":
                     case "south":
                         if (World.player < 0)
